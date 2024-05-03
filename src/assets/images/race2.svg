@@ -1,0 +1,14 @@
+<svg width="48" height="41" viewBox="0 0 48 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="24" cy="20.5" rx="24" ry="20.5" fill="#D59163"/>
+<ellipse cx="16.4384" cy="20.8254" rx="1.9726" ry="2.60317" fill="white"/>
+<ellipse cx="31.5615" cy="20.8254" rx="1.9726" ry="2.60317" fill="white"/>
+<path d="M29.5892 28.2142C29.5892 30.9625 27.0869 33.1905 24.0002 33.1905C20.9134 33.1905 18.4111 30.9625 18.4111 28.2142C18.4111 25.4659 20.9134 27.2547 24.0002 27.2547C27.0869 27.2547 29.5892 25.4659 29.5892 28.2142Z" fill="white"/>
+<mask id="mask0_521_228" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="41">
+<ellipse cx="24" cy="20.5" rx="24" ry="20.5" fill="#E4B98B"/>
+</mask>
+<g mask="url(#mask0_521_228)">
+<ellipse cx="24.0001" cy="6.1826" rx="9.53425" ry="9.43651" fill="#6B3719"/>
+<ellipse cx="37.8082" cy="6.1826" rx="9.53425" ry="9.43651" fill="#6B3719"/>
+<ellipse cx="10.192" cy="6.18254" rx="9.53425" ry="9.43651" fill="#6B3719"/>
+</g>
+</svg>

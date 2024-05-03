@@ -1,0 +1,31 @@
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="logo">
+<rect id="logo_&#235;&#176;&#176;&#234;&#178;&#189;" width="30" height="30" rx="2.25" fill="#D81921"/>
+<g id="logo_&#237;&#152;&#184;&#235;&#158;&#145;&#236;&#157;&#180;">
+<ellipse id="Ellipse 77" cx="8.88536" cy="10.0565" rx="3.39268" ry="3.38983" fill="white"/>
+<path id="Ellipse 79" d="M24.7913 16.3737C24.7913 20.4648 20.4075 23.1765 14.9997 23.1765C9.59189 23.1765 5.20801 20.4648 5.20801 16.3737C5.20801 12.2827 9.59189 8.36157 14.9997 8.36157C20.4075 8.36157 24.7913 12.2827 24.7913 16.3737Z" fill="white"/>
+<ellipse id="Ellipse 78" cx="21.6075" cy="10.0565" rx="3.39268" ry="3.38983" fill="white"/>
+<path id="Intersect" fill-rule="evenodd" clip-rule="evenodd" d="M15.8332 8.39274V14.375C15.8332 14.8352 15.4601 15.2083 14.9998 15.2083C14.5396 15.2083 14.1665 14.8352 14.1665 14.375V8.39274C14.4412 8.37214 14.7191 8.36157 14.9998 8.36157C15.2805 8.36157 15.5585 8.37214 15.8332 8.39274Z" fill="#D81921"/>
+<rect id="Rectangle 4825" x="11.875" y="11.4689" width="1.66667" height="6.21991" rx="0.833333" transform="rotate(-90 11.875 11.4689)" fill="#D81921"/>
+<rect id="Rectangle 4826" x="12.708" y="13.7289" width="1.66667" height="4.52357" rx="0.833333" transform="rotate(-90 12.708 13.7289)" fill="#D81921"/>
+</g>
+<g id="logo_&#237;&#148;&#132;&#235;&#160;&#136;&#236;&#158;&#132;">
+<g id="&#236;&#153;&#188;&#236;&#156;&#132;">
+<rect id="Rectangle 4827" x="2.08301" y="2.08337" width="1.25" height="5" rx="0.625" fill="white"/>
+<rect id="Rectangle 4828" x="2.08301" y="3.33337" width="1.25" height="5" rx="0.625" transform="rotate(-90 2.08301 3.33337)" fill="white"/>
+</g>
+<g id="&#236;&#153;&#188;&#236;&#149;&#132;&#235;&#158;&#152;">
+<rect id="Rectangle 4827_2" width="1.25" height="5" rx="0.625" transform="matrix(1 0 0 -1 2.08301 27.9166)" fill="white"/>
+<rect id="Rectangle 4828_2" width="1.25" height="5" rx="0.625" transform="matrix(-4.37114e-08 1 1 4.37114e-08 2.08301 26.6666)" fill="white"/>
+</g>
+<g id="&#236;&#152;&#164;&#235;&#165;&#184;&#236;&#156;&#132;">
+<rect id="Rectangle 4827_3" x="27.9165" y="2.08337" width="1.25" height="5" rx="0.625" transform="rotate(90 27.9165 2.08337)" fill="white"/>
+<rect id="Rectangle 4828_3" x="26.6665" y="2.08337" width="1.25" height="5" rx="0.625" fill="white"/>
+</g>
+<g id="&#236;&#152;&#164;&#235;&#165;&#184;&#236;&#149;&#132;&#235;&#158;&#152;">
+<rect id="Rectangle 4827_4" width="1.25" height="5" rx="0.625" transform="matrix(-4.37114e-08 -1 -1 4.37114e-08 27.9165 27.9166)" fill="white"/>
+<rect id="Rectangle 4828_4" width="1.25" height="5" rx="0.625" transform="matrix(1 0 0 -1 26.6665 27.9166)" fill="white"/>
+</g>
+</g>
+</g>
+</svg>
