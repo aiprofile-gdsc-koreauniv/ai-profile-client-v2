@@ -34,6 +34,26 @@ function Upload() {
   useEffect(() => {
     setProgressBar(3);
   }, []);
+  const convertToJPEG = (file) => {
+    return new Promise((resolve, reject) => {
+      const img = document.createElement("img");
+      const canvas = document.createElement("canvas");
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        img.onload = () => {
+          let ctx = canvas.getContext("2d");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob((blob) => {
+            resolve(blob);
+          }, 'image/jpeg', 0.95);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  };
   const onChangeFile = async (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -50,16 +70,16 @@ function Upload() {
     }
     setBeforeUpload(false);
     let fileURLs = [];
-    let file;
     setImagesLength(fileArr.length);
     for (let i = 0; i < fileArr.length; i++) {
-      file = fileArr[i];
+      let file = fileArr[i];
+      const jpegFile = await convertToJPEG(file);
       let reader = new FileReader();
       reader.onload = () => {
         fileURLs[i] = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
         setImages([...fileURLs]);
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(jpegFile);
     }
   };
   const uploadImg = async () => {
