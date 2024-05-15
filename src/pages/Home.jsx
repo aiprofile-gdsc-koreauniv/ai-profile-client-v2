@@ -133,7 +133,9 @@ function Home() {
                 }}
               />
               <CheckboxText>개인정보 수집 및 이용에 동의합니다.</CheckboxText>
-              <CheckboxText2 href={personalInformationAgreementPdf}>
+              <CheckboxText2
+              href={personalInformationAgreementPdf}
+              target="_blank">
                 [자세히 보기]
               </CheckboxText2>
             </CheckboxRow>
