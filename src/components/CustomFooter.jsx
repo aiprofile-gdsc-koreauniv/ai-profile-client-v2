@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import privacyPolicy from "../assets/pdf/privacy-policy.pdf";
 export const CustomFooter = () => {
   return (
     <Footer>
@@ -22,7 +22,7 @@ export const CustomFooter = () => {
             <span style={{ margin: "0 10px" }}>|</span>
 
             <FooterLink
-              href="/privacy-policy.pdf"
+              href={privacyPolicy}
               target="_blank"
               rel="noopener noreferrer"
             >
