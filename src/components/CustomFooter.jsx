@@ -22,7 +22,7 @@ export const CustomFooter = () => {
             <span style={{ margin: "0 10px" }}>|</span>
 
             <FooterLink
-              href="/pdf/privacy-policy.pdf"
+              href="/privacy-policy.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
