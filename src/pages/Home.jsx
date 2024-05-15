@@ -12,7 +12,7 @@ import { auth, signInGoogle, signOut } from "../firebase-config";
 import firebase from "firebase/compat/app";
 import footerLogo from "../assets/images/footer-logo.svg";
 import privacyPolicyPdf from "../assets/pdf/privacy-policy.pdf";
-import personalInformationAgreementPdf from "../assets/pdf/personal-information-agrrement.pdf";
+import personalInformationAgreementPdf from "../assets/pdf/personal-information-agreement.pdf";
 import { CustomFooter } from "../components/CustomFooter";
 
 function Home() {
