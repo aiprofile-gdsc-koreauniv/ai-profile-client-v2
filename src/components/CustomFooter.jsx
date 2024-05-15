@@ -12,11 +12,19 @@ export const CustomFooter = () => {
         <FooterUniversityText> Korea University</FooterUniversityText>
         <FooterText>
           <div style={{ display: "flex", alignItems: "center" }}>
-            <FooterLink href="/" target="_blank">
+            <FooterLink
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              window.open("https://www.instagram.com/gdsc.koreauniv/");
+            }}>
               GDSC KU
             </FooterLink>
             <span style={{ margin: "0 10px" }}>|</span>
-            <FooterLink href="/" target="_blank">
+            <FooterLink
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              window.open("https://www.instagram.com/gdscku.project/");
+            }}>
               GDSC KU Projects
             </FooterLink>
             <span style={{ margin: "0 10px" }}>|</span>
