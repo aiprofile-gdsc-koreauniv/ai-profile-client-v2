@@ -213,13 +213,21 @@ function Upload() {
         </>
       ) : (
         <>
-          <Title2
+          <UploadDiv
             initial={{ y: 12, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
           >
-            사진 업로드 중
-          </Title2>
+            <UploadText>
+              <div>거의 다 왔어요!</div>
+            </UploadText>
+          </UploadDiv>
+          <Row>
+            <RowText>
+              호랑이가 사진을 확인하는 동안
+              <br /> 종료하거나 이동하지 말아주세요!
+            </RowText>
+          </Row>
           <motion.div
             style={{
               display: "flex",
@@ -232,11 +240,6 @@ function Upload() {
           >
             <Tiger src={tiger} />
             <CustomLottie animationData={loadingAnimationData} />
-            <Row>
-              <Circle />
-              <RowText>완료될 때까지 종료하거나 이동하지 말아주세요! </RowText>
-              <Circle />
-            </Row>
           </motion.div>
         </>
       )}
@@ -274,7 +277,7 @@ const Center = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   gap: 44px;
-  margin-top: 48px;
+  margin-top: 25px;
 `;
 const Profile = styled.img``;
 const TextsWrapper = styled.div`
@@ -357,21 +360,17 @@ const Desc = styled.p`
   line-height: 150%; /* 24px */
   letter-spacing: -0.304px;
 `;
-const Row = styled.div`
-  display: flex;
-  height: 36px;
-  padding: 7px 50px;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  flex-shrink: 0;
+const Row = styled.div`\
+width: 100%;
+
 `;
 const RowText = styled.p`
   color: var(--grey-2, #9f9f9f);
-
+  padding: 10px 30px;
   /* md 14 */
   font-family: Pretendard;
-  font-size: 14px;
+  font-size: 17px;
+  color: darkslategrey;
   font-style: normal;
   font-weight: 500;
   line-height: 150%; /* 21px */
