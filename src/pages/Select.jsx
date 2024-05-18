@@ -75,27 +75,27 @@ function Select() {
           {step === 1 && gender === "boy" && (
             <>
               <SelectBox
-                selected={style == "small"}
+                selected={style == "male"}
                 onClick={() => {
-                  setStyle("small");
+                  setStyle("male");
                   setProgressBar(2);
                 }}
               >
                 슬림한 편이에요
               </SelectBox>
               <SelectBox
-                selected={style == "big"}
+                selected={style == "male"}
                 onClick={() => {
-                  setStyle("big");
+                  setStyle("male");
                   setProgressBar(2);
                 }}
               >
                 듬직한 편이에요
               </SelectBox>
               <SelectBox
-                selected={style == "middle"}
+                selected={style == "male"}
                 onClick={() => {
-                  setStyle("middle");
+                  setStyle("male");
                   setProgressBar(2);
                 }}
               >
@@ -115,9 +115,9 @@ function Select() {
                 단발이에요
               </SelectBox>
               <SelectBox
-                selected={style == "middle"}
+                selected={style == "short"}
                 onClick={() => {
-                  setStyle("middle");
+                  setStyle("short");
                   setProgressBar(2);
                 }}
               >
