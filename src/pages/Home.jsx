@@ -104,8 +104,6 @@ function Home() {
             </HowToUseRow>
           </HowToUseColumn>
   </HowToUse>*/}
-
-        <StartLineBg>{/* <StartLine /> */}</StartLineBg>
         {firebase.auth()?.currentUser?.email ? (
           <Continue>
             <ContinueBtn

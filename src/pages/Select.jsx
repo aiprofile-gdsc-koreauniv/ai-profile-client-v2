@@ -13,7 +13,7 @@ function Select() {
   const [gender, setGender] = useState(null);
   const [style, setStyle] = useState(null);
   const [glasses, setGlasses] = useState(null);
-  const [step, setStep] = useState(0);
+
   const [progressBar, setProgressBar] = useRecoilState(Progress);
 
   useEffect(() => {
@@ -21,8 +21,9 @@ function Select() {
   }, [firebase.auth()?.currentUser?.email]);
 
   const btnClickHandler = async () => {
-    if (progressBar < 3) setStep(step + 1);
-    else {
+    if (progressBar < 3) {
+      setProgressBar(progressBar + 1);
+    } else {
       navigate("/upload", {
         state: {
           gender: gender,
@@ -36,7 +37,7 @@ function Select() {
     setTimeout(() => {
       window.scroll({ top: -1, left: 0, behavior: "smooth" });
     }, 10);
-    setProgressBar(0);
+    setProgressBar(1);
   }, []);
 
   return (
@@ -46,7 +47,7 @@ function Select() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
       >
-        <SelectTitleText>{renderTitle(step, gender)}</SelectTitleText>
+        <SelectTitleText>{renderTitle(progressBar, gender)}</SelectTitleText>
       </SelectTitle>
       <Contents
         initial={{ y: 24, opacity: 0 }}
@@ -54,13 +55,12 @@ function Select() {
         transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
       >
         <Column>
-          {step == 0 && (
+          {progressBar == 1 && (
             <>
               <SelectBox
                 selected={gender === "boy"}
                 onClick={() => {
                   setGender("boy");
-                  setProgressBar(1);
                 }}
               >
                 남성
@@ -69,20 +69,18 @@ function Select() {
                 selected={gender === "girl"}
                 onClick={() => {
                   setGender("girl");
-                  setProgressBar(1);
                 }}
               >
                 여성
               </SelectBox>
             </>
           )}
-          {step === 1 && gender === "boy" && (
+          {progressBar === 2 && gender === "boy" && (
             <>
               <SelectBox
                 selected={style == "boy"}
                 onClick={() => {
                   setStyle("boy");
-                  setProgressBar(2);
                 }}
               >
                 슬림한 편이에요
@@ -91,7 +89,6 @@ function Select() {
                 selected={style == "man"}
                 onClick={() => {
                   setStyle("man");
-                  setProgressBar(2);
                 }}
               >
                 듬직한 편이에요
@@ -100,20 +97,18 @@ function Select() {
                 selected={style == "none"}
                 onClick={() => {
                   setStyle("none");
-                  setProgressBar(2);
                 }}
               >
                 잘모르겠어요
               </SelectBox>
             </>
           )}
-          {step === 1 && gender === "girl" && (
+          {progressBar === 2 && gender === "girl" && (
             <>
               <SelectBox
                 selected={style == "short"}
                 onClick={() => {
                   setStyle("short");
-                  setProgressBar(2);
                 }}
               >
                 단발이에요
@@ -122,20 +117,18 @@ function Select() {
                 selected={style == "long"}
                 onClick={() => {
                   setStyle("long");
-                  setProgressBar(2);
                 }}
               >
                 장발이에요
               </SelectBox>
             </>
           )}
-          {step === 2 && (
+          {progressBar === 3 && (
             <>
               <SelectBox
                 selected={glasses == true}
                 onClick={() => {
                   setGlasses(true);
-                  setProgressBar(3);
                 }}
               >
                 네, 안경을 써요
@@ -144,7 +137,6 @@ function Select() {
                 selected={glasses == false}
                 onClick={() => {
                   setGlasses(false);
-                  setProgressBar(3);
                 }}
               >
                 아뇨, 안경을 쓰지 않아요
@@ -156,17 +148,17 @@ function Select() {
       <Btn
         onClick={btnClickHandler}
         aria-disabled={
-          (step === 0 && gender === null) ||
-          (step === 1 && style === null) ||
-          (step === 2 && glasses === null)
+          (progressBar === 1 && gender === null) ||
+          (progressBar === 2 && style === null) ||
+          (progressBar === 3 && glasses === null)
         }
         initial={{ y: 36, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6, ease: "easeInOut" }}
         active={
-          (step === 0 && gender !== null) ||
-          (step === 1 && style !== null) ||
-          (step === 2 && glasses !== null)
+          (progressBar === 1 && gender !== null) ||
+          (progressBar === 2 && style !== null) ||
+          (progressBar === 3 && glasses !== null)
         }
       >
         다음

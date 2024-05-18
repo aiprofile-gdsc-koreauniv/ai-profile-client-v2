@@ -1,12 +1,12 @@
 export const renderTitle = (step, gender) => {
-  if (step === 0) {
+  if (step === 1) {
     return (
       <div>
         성별을 <br />
         골라주세요
       </div>
     );
-  } else if (step === 1) {
+  } else if (step === 2) {
     if (gender === "boy") {
       return (
         <div>
@@ -22,7 +22,7 @@ export const renderTitle = (step, gender) => {
         </div>
       );
     }
-  } else if (step === 2) {
+  } else if (step === 3) {
     return (
       <div>
         안경을 <br />
