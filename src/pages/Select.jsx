@@ -24,7 +24,11 @@ function Select() {
     if (progressBar < 3) setStep(step + 1);
     else {
       navigate("/upload", {
-        state: { gender: gender, style: style, glasses: glasses },
+        state: {
+          gender: gender,
+          style: style == "small" || "none" ? "male" : style,
+          glasses: glasses,
+        },
       });
     }
   };
@@ -75,9 +79,9 @@ function Select() {
           {step === 1 && gender === "boy" && (
             <>
               <SelectBox
-                selected={style == "male"}
+                selected={style == "small"}
                 onClick={() => {
-                  setStyle("male");
+                  setStyle("small");
                   setProgressBar(2);
                 }}
               >
@@ -93,9 +97,9 @@ function Select() {
                 듬직한 편이에요
               </SelectBox>
               <SelectBox
-                selected={style == "male"}
+                selected={style == "none"}
                 onClick={() => {
-                  setStyle("male");
+                  setStyle("none");
                   setProgressBar(2);
                 }}
               >
