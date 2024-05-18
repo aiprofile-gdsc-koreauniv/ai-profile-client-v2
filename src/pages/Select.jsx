@@ -39,112 +39,127 @@ function Select() {
     }, 10);
     setProgressBar(1);
   }, []);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    setIsVisible(false);
+    const timeout = setTimeout(() => {
+      setIsVisible(true);
+    }, 400);
+
+    return () => clearTimeout(timeout);
+  }, [progressBar]);
 
   return (
     <Container>
-      <SelectTitle
-        initial={{ y: 12, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
-      >
-        <SelectTitleText>{renderTitle(progressBar, gender)}</SelectTitleText>
-      </SelectTitle>
-      <Contents
-        initial={{ y: 24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
-      >
-        <Column>
-          {progressBar == 1 && (
-            <>
-              <SelectBox
-                selected={gender === "boy"}
-                onClick={() => {
-                  setGender("boy");
-                }}
-              >
-                남성
-              </SelectBox>
-              <SelectBox
-                selected={gender === "girl"}
-                onClick={() => {
-                  setGender("girl");
-                }}
-              >
-                여성
-              </SelectBox>
-            </>
-          )}
-          {progressBar === 2 && gender === "boy" && (
-            <>
-              <SelectBox
-                selected={style == "boy"}
-                onClick={() => {
-                  setStyle("boy");
-                }}
-              >
-                슬림한 편이에요
-              </SelectBox>
-              <SelectBox
-                selected={style == "man"}
-                onClick={() => {
-                  setStyle("man");
-                }}
-              >
-                듬직한 편이에요
-              </SelectBox>
-              <SelectBox
-                selected={style == "none"}
-                onClick={() => {
-                  setStyle("none");
-                }}
-              >
-                잘모르겠어요
-              </SelectBox>
-            </>
-          )}
-          {progressBar === 2 && gender === "girl" && (
-            <>
-              <SelectBox
-                selected={style == "short"}
-                onClick={() => {
-                  setStyle("short");
-                }}
-              >
-                단발이에요
-              </SelectBox>
-              <SelectBox
-                selected={style == "long"}
-                onClick={() => {
-                  setStyle("long");
-                }}
-              >
-                장발이에요
-              </SelectBox>
-            </>
-          )}
-          {progressBar === 3 && (
-            <>
-              <SelectBox
-                selected={glasses == true}
-                onClick={() => {
-                  setGlasses(true);
-                }}
-              >
-                네, 안경을 써요
-              </SelectBox>
-              <SelectBox
-                selected={glasses == false}
-                onClick={() => {
-                  setGlasses(false);
-                }}
-              >
-                아뇨, 안경을 쓰지 않아요
-              </SelectBox>
-            </>
-          )}
-        </Column>
-      </Contents>
+      {isVisible && (
+        <SelectTitle
+          key={progressBar}
+          initial={{ y: 12, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
+        >
+          <SelectTitleText>{renderTitle(progressBar, gender)}</SelectTitleText>
+        </SelectTitle>
+      )}
+      {isVisible && (
+        <Contents
+          initial={{ y: 24, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
+        >
+          <Column>
+            {progressBar == 1 && (
+              <>
+                <SelectBox
+                  selected={gender === "boy"}
+                  onClick={() => {
+                    setGender("boy");
+                  }}
+                >
+                  남성
+                </SelectBox>
+                <SelectBox
+                  selected={gender === "girl"}
+                  onClick={() => {
+                    setGender("girl");
+                  }}
+                >
+                  여성
+                </SelectBox>
+              </>
+            )}
+            {progressBar === 2 && gender === "boy" && (
+              <>
+                <SelectBox
+                  selected={style == "boy"}
+                  onClick={() => {
+                    setStyle("boy");
+                  }}
+                >
+                  슬림한 편이에요
+                </SelectBox>
+                <SelectBox
+                  selected={style == "man"}
+                  onClick={() => {
+                    setStyle("man");
+                  }}
+                >
+                  듬직한 편이에요
+                </SelectBox>
+                <SelectBox
+                  selected={style == "none"}
+                  onClick={() => {
+                    setStyle("none");
+                  }}
+                >
+                  잘모르겠어요
+                </SelectBox>
+              </>
+            )}
+            {progressBar === 2 && gender === "girl" && (
+              <>
+                <SelectBox
+                  selected={style == "short"}
+                  onClick={() => {
+                    setStyle("short");
+                  }}
+                >
+                  단발이에요
+                </SelectBox>
+                <SelectBox
+                  selected={style == "long"}
+                  onClick={() => {
+                    setStyle("long");
+                  }}
+                >
+                  장발이에요
+                </SelectBox>
+              </>
+            )}
+            {progressBar === 3 && (
+              <>
+                <SelectBox
+                  selected={glasses == true}
+                  onClick={() => {
+                    setGlasses(true);
+                  }}
+                >
+                  네, 안경을 써요
+                </SelectBox>
+                <SelectBox
+                  selected={glasses == false}
+                  onClick={() => {
+                    setGlasses(false);
+                  }}
+                >
+                  아뇨, 안경을 쓰지 않아요
+                </SelectBox>
+              </>
+            )}
+          </Column>
+        </Contents>
+      )}
       <Btn
         onClick={btnClickHandler}
         aria-disabled={
