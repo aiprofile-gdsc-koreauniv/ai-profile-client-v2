@@ -7,6 +7,7 @@ import firebase from "firebase/compat/app";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Progress } from "../recoil/progress";
+import { Copy } from "../components/Copy";
 
 function Complete() {
   const navigate = useNavigate();
@@ -72,15 +73,7 @@ function Complete() {
       >
         홈으로 돌아가기
       </Btn>
-      {copied ? (
-        <ShareImg
-          src={share}
-          initial={{ y: 12, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-        />
-      ) : (
-        <></>
-      )}
+      {copied ? <Copy /> : <></>}
     </Container>
   );
 }
