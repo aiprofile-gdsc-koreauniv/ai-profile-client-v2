@@ -35,7 +35,7 @@ function Carousel() {
 export default Carousel;
 const CustomSlider = styled(Slider)`
   width: 100%;
-  margin-top: 56px;
+  margin-top: 20px;
   margin-bottom: 30px;
   max-width: 440px;
 `;

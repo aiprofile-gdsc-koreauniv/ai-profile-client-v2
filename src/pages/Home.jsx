@@ -17,6 +17,7 @@ import personalInformationAgreementPdf from "../assets/pdf/personal-information-
 import { CustomFooter } from "../components/CustomFooter";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import splashTitle from "../assets/images/splash-title.svg";
 function Home() {
   const navigate = useNavigate();
   const [showNotice, setShowNotice] = useState(false);
@@ -103,9 +104,7 @@ function Home() {
             </HowToUseRow>
           </HowToUseColumn>
   </HowToUse>*/}
-        <StartRow>
-          <StartTitle>시작하기</StartTitle>
-        </StartRow>
+
         <StartLineBg>{/* <StartLine /> */}</StartLineBg>
         {firebase.auth()?.currentUser?.email ? (
           <Continue>
@@ -573,7 +572,6 @@ const GoToResultBtn = styled.div`
   flex-shrink: 0;
   border-radius: 12px;
   background: #fbe8e9;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   color: var(--red, #d81921);
   font-family: Roboto;
   font-size: 16px;
