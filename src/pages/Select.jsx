@@ -119,15 +119,6 @@ function Select() {
                 단발이에요
               </SelectBox>
               <SelectBox
-                selected={style == "short"}
-                onClick={() => {
-                  setStyle("short");
-                  setProgressBar(2);
-                }}
-              >
-                중단발이에요
-              </SelectBox>
-              <SelectBox
                 selected={style == "long"}
                 onClick={() => {
                   setStyle("long");
