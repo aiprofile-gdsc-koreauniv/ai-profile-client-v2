@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import tobBg from "../assets/images/topBg.svg";
+import tobBg from "../assets/images/curtain.svg";
 import logo from "../assets/images/logo.svg";
 import N from "../assets/images/N .svg";
 import google from "../assets/images/google.svg";
@@ -205,7 +205,7 @@ const TopBgWrapper = styled.div`
 `;
 const TopBg = styled.img`
   width: 440px;
-  height: 285px;
+  height: 190px;
 `;
 const TopRow = styled.div`
   position: absolute;
@@ -233,7 +233,7 @@ const Logo = styled.img`
 `;
 const TitleWrapper = styled.div`
   position: absolute;
-  top: 80px;
+  top: 70px;
   left: 32px;
 `;
 const Title = styled.p`
