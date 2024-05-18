@@ -142,19 +142,30 @@ function Upload() {
     <Container>
       {beforeUpload ? (
         <>
-          <Title
+          <UploadDiv
             initial={{ y: 12, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
           >
-            사진 업로드 하기
-          </Title>
+            <UploadText>
+              <div>
+                이제 사진을 <br />
+                업로드해주세요
+              </div>
+            </UploadText>
+          </UploadDiv>
+          <Tip
+            initial={{ y: 12, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
+          >
+            <TipText>프로필이 잘 만들어지는 사진 팁</TipText>
+          </Tip>
           <Center
             initial={{ y: 24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
           >
-            <Profile src={uploadNotice} />
             <TextsWrapper>
               <Text>
                 얼굴이 <Bold>선명하고 크게</Bold> 나온 사진을 골라주세요
@@ -180,6 +191,7 @@ function Upload() {
               </Text>
               <SubText>한 프로젝트에는 한 명의 얼굴만 인식시켜주세요</SubText>
             </TextsWrapper>
+            <Profile src={uploadNotice} />
           </Center>
           <Btn
             onClick={btnClickHandler}
@@ -264,20 +276,15 @@ const Center = styled(motion.div)`
   gap: 44px;
   margin-top: 48px;
 `;
-const Profile = styled.img`
-  width: 160px;
-  height: 160px;
-`;
+const Profile = styled.img``;
 const TextsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 4px;
 `;
 const Text = styled.div`
   color: var(--dark-grey, #505050);
-  text-align: center;
-
+  margin-top: 5px;
   /* pretendard sb 16 */
   font-family: Pretendard;
   font-size: 16px;
@@ -381,8 +388,7 @@ const CustomLottie = styled(Lottie)`
   margin-top: 30px;
 `;
 const SubText = styled.p`
-  color: darkgray;
-
+  color: darkslategrey;
   /* pretendard md 12 */
   font-family: Pretendard;
   font-size: 12px;
@@ -390,4 +396,28 @@ const SubText = styled.p`
   font-weight: 500;
   line-height: 150%; /* 18px */
   letter-spacing: -0.228px;
+`;
+const UploadDiv = styled(motion.div)`
+  width: 100%;
+`;
+const UploadText = styled.div`
+  padding: 10px 30px;
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 40px;
+  margin-top: 30px;
+`;
+const Tip = styled(motion.div)`
+  width: 100%;
+`;
+const TipText = styled.div`
+  background: #fbe8e9;
+  width: fit-content;
+  margin-left: 30px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  color: var(--red, #d81921);
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 15px;
 `;
