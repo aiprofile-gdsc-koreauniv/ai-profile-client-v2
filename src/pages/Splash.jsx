@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import splashTitle from "../assets/images/splash-title.svg";
+import splashTitle from "../assets/images/splash-new-title.svg";
 import splashFrame from "../assets/images/splash-frame.svg";
 import splashTiger from "../assets/images/splash-tiger.svg";
 import { easeInOut, motion } from "framer-motion";
