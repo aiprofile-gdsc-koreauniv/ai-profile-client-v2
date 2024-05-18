@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import tobBg from "../assets/images/topBg.svg";
 import logo from "../assets/images/logo.svg";
+import N from "../assets/images/N .svg";
 import google from "../assets/images/google.svg";
 import Checkbox from "@mui/material/Checkbox";
 import { Link, useNavigate } from "react-router-dom";
@@ -113,6 +114,7 @@ function Home() {
                 navigate("/select");
               }}
             >
+              <BtnIcon src={N} />
               프로필 사진 새로 만들기
             </ContinueBtn>
             <GoToResultBtn>
@@ -153,7 +155,7 @@ function Home() {
                 <GoogleBtnText>로그인하고 프로필 만들기</GoogleBtnText>
               </GoogleBtn>
               <GoToResultBtn>
-                <BtnIcon src={logo} />
+                <BtnIcon src={N} />
                 <ResultBtnText
                   onClick={() =>
                     window.open("https://result.horangstudio.com/")

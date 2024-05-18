@@ -197,7 +197,7 @@ const Title = styled(motion.p)`
 
   /* pretendard bold 24 */
   font-family: Pretendard;
-  font-size: 24px;
+  font-size: 19px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 36px */
@@ -322,7 +322,7 @@ const SelectTitleText = styled.div`
   padding: 30px;
   font-family: Pretendard;
   font-weight: 600;
-  font-size: 40px;
+  font-size: 35px;
 `;
 const SelectBox = styled.div`
   width: 320px;
