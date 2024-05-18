@@ -4,7 +4,7 @@ import uploadNotice from "../assets/images/upload-notice.svg";
 import tiger from "../assets/images/tiger.svg";
 import Lottie from "lottie-react";
 import loadingAnimationData from "../assets/lottie/loading.json";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import API from "../utils/axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
@@ -89,13 +89,14 @@ function Upload() {
   const uploadImg = async () => {
     try {
       const token = await firebase.auth()?.currentUser?.getIdToken();
-      console.log(token);
       const res = await API.post(
         "/i2i/source",
         {
           email: firebase.auth()?.currentUser?.email,
           images: images,
-          gender: location.state.style === 1 ? "boy" : location.state.gender,
+          gender: location.state.gender,
+          style: location.state.style,
+          glasses: location.state.glasses,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
