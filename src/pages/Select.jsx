@@ -5,137 +5,174 @@ import { motion, easeInOut } from "framer-motion";
 import firebase from "firebase/compat/app";
 import { useRecoilState } from "recoil";
 import { Progress } from "../recoil/progress";
-
+import { renderTitle } from "../utils/text";
+import { render } from "@testing-library/react";
+import { set } from "firebase/database";
 function Select() {
   const navigate = useNavigate();
   const [gender, setGender] = useState(null);
   const [style, setStyle] = useState(null);
+  const [glasses, setGlasses] = useState(null);
+  const [step, setStep] = useState(0);
   const [progressBar, setProgressBar] = useRecoilState(Progress);
-  console.log("gender", gender);
-  console.log("style", style);
+
   useEffect(() => {
     if (!firebase.auth()?.currentUser?.email) navigate("/home");
   }, [firebase.auth()?.currentUser?.email]);
+
   const btnClickHandler = async () => {
-    navigate("/upload", { state: { gender: gender, style: style } });
+    if (progressBar < 3) setStep(step + 1);
+    else {
+      navigate("/upload", {
+        state: { gender: gender, style: style, glasses: glasses },
+      });
+    }
   };
   useEffect(() => {
     setTimeout(() => {
       window.scroll({ top: -1, left: 0, behavior: "smooth" });
     }, 10);
+    setProgressBar(0);
   }, []);
 
   return (
     <Container>
-      <Title
+      <SelectTitle
         initial={{ y: 12, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
       >
-        내 정보 입력하기
-      </Title>
-      <Desc
-        initial={{ y: 24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
-      >
-        선택하신 정보를 기반으로 정밀한 프로필을 만들 수 있어요.
-      </Desc>
+        <SelectTitleText>{renderTitle(step, gender)}</SelectTitleText>
+      </SelectTitle>
       <Contents
         initial={{ y: 24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
       >
         <Column>
-          <Type>성별</Type>
-          <Row>
-            <div
-              onClick={() => {
-                setGender("man");
-                setProgressBar(style ? 2 : 1);
-              }}
-              style={{
-                border: gender === "man" ? "3px solid  #D81921" : "none",
-                position: "relative",
-                height: 144.5,
-                width: 144.5,
-                borderRadius: 23,
-              }}
-              selected={gender === "man"}
-            >
-              {gender === "girl" ? (
-                <img
-                  src="/images/unselected.png"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              ) : (
-                <img
-                  src="/images/man.png"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              )}
-            </div>
-            <div
-              onClick={() => {
-                setGender("girl");
-                setProgressBar(style ? 2 : 1);
-              }}
-              selected={gender === "girl"}
-              style={{
-                border: gender === "girl" ? "3px solid #D81921" : "none",
-                position: "relative",
-                height: 144.5,
-                width: 144.5,
-                borderRadius: 23,
-              }}
-            >
-              {gender === "man" ? (
-                <img src="/images/unselected.png" />
-              ) : (
-                <img src="/images/girl.png" />
-              )}
-            </div>
-          </Row>
-        </Column>
-        <Column>
-          <Type>{gender === "girl" ? "스타일" : "이미지"}</Type>
-          <Row style={{ justifyContents: "center" }}>
-            <ContentsBtn
-              onClick={() => {
-                setStyle(1);
-                setProgressBar(gender ? 2 : 1);
-              }}
-              selected={style === 1}
-            >
-              {gender === "girl" ? "단발" : "소년"}
-            </ContentsBtn>
-            <ContentsBtn
-              onClick={() => {
-                setStyle(2);
-
-                setProgressBar(gender ? 2 : 1);
-              }}
-              selected={style === 2}
-            >
-              {gender === "girl" ? "장발" : "남성"}
-            </ContentsBtn>
-          </Row>
+          {step == 0 && (
+            <>
+              <SelectBox
+                selected={gender === "boy"}
+                onClick={() => {
+                  setGender("boy");
+                  setProgressBar(1);
+                }}
+              >
+                남성
+              </SelectBox>
+              <SelectBox
+                selected={gender === "girl"}
+                onClick={() => {
+                  setGender("girl");
+                  setProgressBar(1);
+                }}
+              >
+                여성
+              </SelectBox>
+            </>
+          )}
+          {step === 1 && gender === "boy" && (
+            <>
+              <SelectBox
+                selected={style == "small"}
+                onClick={() => {
+                  setStyle("small");
+                  setProgressBar(2);
+                }}
+              >
+                슬림한 편이에요
+              </SelectBox>
+              <SelectBox
+                selected={style == "big"}
+                onClick={() => {
+                  setStyle("big");
+                  setProgressBar(2);
+                }}
+              >
+                듬직한 편이에요
+              </SelectBox>
+              <SelectBox
+                selected={style == "middle"}
+                onClick={() => {
+                  setStyle("middle");
+                  setProgressBar(2);
+                }}
+              >
+                잘모르겠어요
+              </SelectBox>
+            </>
+          )}
+          {step === 1 && gender === "girl" && (
+            <>
+              <SelectBox
+                selected={style == "short"}
+                onClick={() => {
+                  setStyle("short");
+                  setProgressBar(2);
+                }}
+              >
+                단발이에요
+              </SelectBox>
+              <SelectBox
+                selected={style == "middle"}
+                onClick={() => {
+                  setStyle("middle");
+                  setProgressBar(2);
+                }}
+              >
+                중단발이에요
+              </SelectBox>
+              <SelectBox
+                selected={style == "long"}
+                onClick={() => {
+                  setStyle("long");
+                  setProgressBar(2);
+                }}
+              >
+                장발이에요
+              </SelectBox>
+            </>
+          )}
+          {step === 2 && (
+            <>
+              <SelectBox
+                selected={glasses == true}
+                onClick={() => {
+                  setGlasses(true);
+                  setProgressBar(3);
+                }}
+              >
+                네, 안경을 써요
+              </SelectBox>
+              <SelectBox
+                selected={glasses == false}
+                onClick={() => {
+                  setGlasses(false);
+                  setProgressBar(3);
+                }}
+              >
+                아뇨, 안경을 쓰지 않아요
+              </SelectBox>
+            </>
+          )}
         </Column>
       </Contents>
       <Btn
-        onClick={gender && style != null ? btnClickHandler : null}
+        onClick={btnClickHandler}
+        aria-disabled={
+          (step === 0 && gender === null) ||
+          (step === 1 && style === null) ||
+          (step === 2 && glasses === null)
+        }
         initial={{ y: 36, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
-        active={gender && style != null}
+        transition={{ delay: 0.4, duration: 0.6, ease: "easeInOut" }}
+        active={
+          (step === 0 && gender !== null) ||
+          (step === 1 && style !== null) ||
+          (step === 2 && glasses !== null)
+        }
       >
         다음
       </Btn>
@@ -277,4 +314,27 @@ const Btn = styled(motion.div)`
   font-weight: 600;
   line-height: 24px; /* 120% */
   letter-spacing: 0.38px;
+`;
+const SelectTitle = styled(motion.div)`
+  width: 100%;
+`;
+const SelectTitleText = styled.div`
+  padding: 30px;
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 40px;
+`;
+const SelectBox = styled.div`
+  width: 320px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: 10px 0px;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: ${(props) => (props.selected ? "black" : "#f3f4f6")};
+  color: ${(props) => (props.selected ? "white" : "#505050")};
 `;

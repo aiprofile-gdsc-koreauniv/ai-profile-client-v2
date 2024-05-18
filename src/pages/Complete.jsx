@@ -14,7 +14,7 @@ function Complete() {
     if (!firebase.auth()?.currentUser?.email) navigate("/home");
   }, [firebase.auth()?.currentUser?.email]);
   useEffect(() => {
-    setProgressBar(4);
+    setProgressBar(5);
   }, []);
   return (
     <Container>

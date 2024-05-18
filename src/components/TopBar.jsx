@@ -16,9 +16,9 @@ function TopBar() {
           <Logo src={logo} />
           <Text>호랑이 사진관</Text>
         </Left>
-        <Right>
+        {/* <Right>
           <Progress>{progress}</Progress>/4
-        </Right>
+        </Right> */}
       </Top>
       <LineBg>
         <Line progress={progress} />
@@ -94,7 +94,7 @@ const LineBg = styled.div`
   margin-top: 12px;
 `;
 const Line = styled.div`
-  width: ${(props) => `calc(25% * ${props.progress})`};
+  width: ${(props) => `calc(20% * ${props.progress})`};
   height: 3px;
   background: var(--red, #d81921);
   transition: 0.5s ease-in-out;

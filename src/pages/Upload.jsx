@@ -32,7 +32,7 @@ function Upload() {
     }, 10);
   }, []);
   useEffect(() => {
-    setProgressBar(3);
+    setProgressBar(4);
   }, []);
   const convertToJPEG = (file) => {
     return new Promise((resolve, reject) => {
@@ -45,9 +45,13 @@ function Upload() {
           canvas.width = img.width;
           canvas.height = img.height;
           ctx.drawImage(img, 0, 0);
-          canvas.toBlob((blob) => {
-            resolve(blob);
-          }, 'image/jpeg', 0.95);
+          canvas.toBlob(
+            (blob) => {
+              resolve(blob);
+            },
+            "image/jpeg",
+            0.95
+          );
         };
         img.src = e.target.result;
       };
