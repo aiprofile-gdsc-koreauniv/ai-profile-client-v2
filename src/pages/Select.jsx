@@ -322,7 +322,7 @@ const SelectTitleText = styled.div`
   padding: 30px;
   font-family: Pretendard;
   font-weight: 600;
-  font-size: 35px;
+  font-size: 30px;
 `;
 const SelectBox = styled.div`
   width: 320px;
