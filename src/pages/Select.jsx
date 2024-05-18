@@ -26,7 +26,7 @@ function Select() {
       navigate("/upload", {
         state: {
           gender: gender,
-          style: style == "small" || "none" ? "male" : style,
+          style: style == "none" ? "man" : style,
           glasses: glasses,
         },
       });
@@ -79,18 +79,18 @@ function Select() {
           {step === 1 && gender === "boy" && (
             <>
               <SelectBox
-                selected={style == "small"}
+                selected={style == "boy"}
                 onClick={() => {
-                  setStyle("small");
+                  setStyle("boy");
                   setProgressBar(2);
                 }}
               >
                 슬림한 편이에요
               </SelectBox>
               <SelectBox
-                selected={style == "male"}
+                selected={style == "man"}
                 onClick={() => {
-                  setStyle("male");
+                  setStyle("man");
                   setProgressBar(2);
                 }}
               >

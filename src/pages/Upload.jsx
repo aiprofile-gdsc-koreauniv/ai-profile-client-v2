@@ -94,8 +94,8 @@ function Upload() {
         {
           email: firebase.auth()?.currentUser?.email,
           images: images,
-          gender: location.state.gender,
-          hair: location.state.style,
+          gender: location.state.style == "man" ? "man" : location.state.gender,
+          hair: location.state.gender == "boy" ? "male" : location.state.style,
           glasses: location.state.glasses,
         },
         {
@@ -404,7 +404,7 @@ const UploadText = styled.div`
   padding: 10px 30px;
   font-family: Pretendard;
   font-weight: 600;
-  font-size: 40px;
+  font-size: 30px;
   margin-top: 30px;
 `;
 const Tip = styled(motion.div)`
