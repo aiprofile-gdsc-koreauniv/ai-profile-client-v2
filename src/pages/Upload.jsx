@@ -95,7 +95,7 @@ function Upload() {
           email: firebase.auth()?.currentUser?.email,
           images: images,
           gender: location.state.gender,
-          style: location.state.style,
+          hair: location.state.style,
           glasses: location.state.glasses,
         },
         {
