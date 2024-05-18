@@ -14,7 +14,8 @@ import footerLogo from "../assets/images/footer-logo.svg";
 import privacyPolicyPdf from "../assets/pdf/privacy-policy.pdf";
 import personalInformationAgreementPdf from "../assets/pdf/personal-information-agreement.pdf";
 import { CustomFooter } from "../components/CustomFooter";
-
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 function Home() {
   const navigate = useNavigate();
   const [showNotice, setShowNotice] = useState(false);
@@ -38,6 +39,7 @@ function Home() {
       navigate("/select");
     }
   }, [email, loginClicked]);
+  console.log(email);
 
   useEffect(() => {
     auth.onAuthStateChanged(async (firebaseUser) => {
@@ -48,6 +50,7 @@ function Home() {
       }
     });
   }, []);
+
   return (
     <Container>
       <motion.div
@@ -62,11 +65,12 @@ function Home() {
           </TopRow>
           <TitleWrapper>
             <Title>호랑이 사진관</Title>
-            <Desc>고연전 기념 AI 프로필 제작 서비스</Desc>
+            <Desc>석탑대동제 기념 AI 프로필 제작 서비스</Desc>
           </TitleWrapper>
           <TopBg src={tobBg} />
         </TopBgWrapper>
         <Carousel />
+        {/*
         <HowToUse>
           <HowToUseTitle>이용방법</HowToUseTitle>
           <HowToUseColumn>
@@ -97,7 +101,7 @@ function Home() {
               </HowToUseDescWrapper>
             </HowToUseRow>
           </HowToUseColumn>
-        </HowToUse>
+  </HowToUse>*/}
         <StartRow>
           <StartTitle>시작하기</StartTitle>
         </StartRow>
@@ -109,20 +113,23 @@ function Home() {
                 navigate("/select");
               }}
             >
-              현재 계정으로 계속하기
+              프로필 사진 새로 만들기
             </ContinueBtn>
-            <LogoutBtn
-              onClick={() => {
-                auth.signOut();
-              }}
-            >
-              로그아웃 하기
-            </LogoutBtn>
+            <GoToResultBtn>
+              <BtnIcon src={logo} />
+              <ResultBtnText
+                onClick={() => window.open("https://result.horangstudio.com/")}
+              >
+                완성된 프로필 보러 가기
+              </ResultBtnText>
+            </GoToResultBtn>
           </Continue>
         ) : (
           <>
             <CheckboxRow>
               <Checkbox
+                icon={<CheckCircleOutlineIcon />}
+                checkedIcon={<CheckCircleIcon />}
                 checked={checked}
                 onChange={handleChange}
                 sx={{
@@ -133,20 +140,46 @@ function Home() {
                 }}
               />
               <CheckboxText>개인정보 수집 및 이용에 동의합니다.</CheckboxText>
-              <CheckboxText2
-              href={personalInformationAgreementPdf}
-              target="_blank">
-                [자세히 보기]
-              </CheckboxText2>
+              <DetailText
+                href={personalInformationAgreementPdf}
+                target="_blank"
+              >
+                자세히 보기 &gt;
+              </DetailText>
             </CheckboxRow>
-            <GoogleBtn onClick={handleBtnClick}>
-              <Google src={google} />
-              <GoogleBtnText>Google로 시작하기</GoogleBtnText>
-            </GoogleBtn>
+            <Continue>
+              <GoogleBtn onClick={handleBtnClick}>
+                <BtnIcon src={google} />
+                <GoogleBtnText>로그인하고 프로필 만들기</GoogleBtnText>
+              </GoogleBtn>
+              <GoToResultBtn>
+                <BtnIcon src={logo} />
+                <ResultBtnText
+                  onClick={() =>
+                    window.open("https://result.horangstudio.com/")
+                  }
+                >
+                  완성된 프로필 보러 가기
+                </ResultBtnText>
+              </GoToResultBtn>
+            </Continue>
             <Notice opacity={showNotice ? 1 : 0}>
               서비스를 이용하시려면 개인정보처리방침에 동의하셔야 합니다.{" "}
             </Notice>
           </>
+        )}
+        {firebase.auth()?.currentUser?.email ? (
+          <Logout>
+            <DetailText
+              onClick={() => {
+                auth.signOut();
+              }}
+            >
+              로그아웃 하기
+            </DetailText>
+          </Logout>
+        ) : (
+          <></>
         )}
         <CustomFooter />
       </motion.div>
@@ -198,7 +231,7 @@ const Logo = styled.img`
 `;
 const TitleWrapper = styled.div`
   position: absolute;
-  top: 138px;
+  top: 80px;
   left: 32px;
 `;
 const Title = styled.p`
@@ -214,7 +247,7 @@ const Desc = styled.p`
   font-family: SB Aggro;
   font-size: 16px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100;
   line-height: normal;
 `;
 const HowToUse = styled.div`
@@ -286,13 +319,12 @@ const StartRow = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-top: 88px;
+
   margin-left: 16px;
   margin-right: 16px;
 `;
 const StartTitle = styled.p`
   color: var(--red, #d81921);
-
   /* aggro sb 24 */
   font-family: SB Aggro;
   font-size: 24px;
@@ -333,16 +365,17 @@ const CheckboxText = styled.p`
   line-height: 150%; /* 18px */
   letter-spacing: -0.228px;
 `;
-const CheckboxText2 = styled.a`
+const DetailText = styled.a`
   cursor: pointer;
-  color: var(--black, #212121);
+  margin-left: 10px;
+  color: lightgrey;
+  text-decoration: underline;
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 18px */
   letter-spacing: -0.228px;
-  text-decoration: none;
 `;
 const GoogleBtn = styled.div`
   cursor: pointer;
@@ -355,10 +388,10 @@ const GoogleBtn = styled.div`
   gap: 8px;
   flex-shrink: 0;
   border-radius: 12px;
-  border: 2.4px solid var(--grey, #d9d9d9);
-  background: var(--white, #fff);
+  background: #f3f4f6;
+  font-weight: bold;
 `;
-const Google = styled.img`
+const BtnIcon = styled.img`
   width: 23px;
   height: 23px;
 `;
@@ -367,7 +400,15 @@ const GoogleBtnText = styled.p`
   font-family: Roboto;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
+  letter-spacing: -0.304px;
+`;
+const ResultBtnText = styled.p`
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
   line-height: 150%; /* 24px */
   letter-spacing: -0.304px;
 `;
@@ -516,4 +557,32 @@ const LogoutBtn = styled.div`
   font-weight: 600;
   line-height: 150%; /* 24px */
   letter-spacing: -0.304px;
+`;
+const GoToResultBtn = styled.div`
+  cursor: pointer;
+  display: flex;
+  width: calc(100% - 64px);
+  margin-left: 16px;
+  padding: 18px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: #fbe8e9;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  color: var(--red, #d81921);
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 24px */
+  letter-spacing: -0.304px;
+`;
+const Logout = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 30px 0px;
 `;

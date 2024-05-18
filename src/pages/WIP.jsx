@@ -14,7 +14,7 @@ function WIP() {
       <Question src={question} />
       <Title>서비스 준비 중입니다.</Title>
       <Desc>
-        <DescRed>2023년 9월 6일 13시</DescRed>에 정식 배포됩니다
+        <DescRed>2024년 5월 20일</DescRed>에 정식 배포됩니다
       </Desc>
     </Container>
   );
