@@ -9,14 +9,29 @@ import { pageVariants } from "../animation/variants";
 function Splash() {
   const navigate = useNavigate();
   const location = useLocation();
+
   useEffect(() => {
-    if (location.pathname === "/wip") {
-      return;
-    } else {
-      setTimeout(() => {
-        navigate("/home");
-      }, 2500);
-    }
+    const isClosed = async () => {
+      const res = await API.get("/ops/service");
+      if (
+        res.data.serviceState === "preparing" ||
+        res.data.serviceStatus === "closed"
+      ) {
+        return true;
+      }
+    };
+
+    const navigateToHome = async () => {
+      if (await isClosed()) {
+        return;
+      } else {
+        setTimeout(() => {
+          navigate("/home");
+        }, 3000);
+      }
+    };
+
+    navigateToHome();
   }, [location.pathname]);
   return (
     <Container>
