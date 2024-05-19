@@ -8,11 +8,13 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { Progress } from "../recoil/progress";
 import { Copy } from "../components/Copy";
+import API from "../utils/axios";
 
 function Complete() {
   const navigate = useNavigate();
   const [progressBar, setProgressBar] = useRecoilState(Progress);
   const [copied, setCopied] = useState(false);
+  const [time, setTime] = useState(0);
   useEffect(() => {
     if (!firebase.auth()?.currentUser?.email) navigate("/home");
   }, [firebase.auth()?.currentUser?.email]);
@@ -28,6 +30,18 @@ function Complete() {
       return () => clearTimeout(timer);
     }
   }, [copied]);
+  useEffect(() => {
+    const fetchTime = async () => {
+      try {
+        const res = await API.get("/i2i/waittime");
+
+        setTime(res.data.waitTime);
+      } catch (error) {
+        console.error("Error fetching wait time:", error);
+      }
+    };
+    fetchTime();
+  }, []);
   return (
     <Container>
       <Title
@@ -74,11 +88,39 @@ function Complete() {
         홈으로 돌아가기
       </Btn>
       {copied ? <Copy /> : <></>}
+      <TimeDiv>
+        예상 대기시간은
+        <TimeText> {time}</TimeText>분 입니다
+      </TimeDiv>
     </Container>
   );
 }
 
 export default Complete;
+const TimeDiv = styled(motion.div)`
+  color: var(--black, #212121);
+
+  /* pretendard sb 16 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: -0.304px;
+  margin-top: 4px;
+`;
+const TimeText = styled(motion.em)`
+  color: var(--red, #d81921);
+  text-align: center;
+
+  /* pretendard sb 16 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 24px */
+  letter-spacing: -0.304px;
+`;
 const Container = styled(motion.div)`
   width: 100%;
   height: calc(100vh - 51px);
