@@ -10,13 +10,14 @@ function Splash() {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    if (location.pathname !== "/wip") {
+    if (location.pathname === "/wip") {
       return;
+    } else {
+      setTimeout(() => {
+        navigate("/home");
+      }, 2500);
     }
-    setTimeout(() => {
-      navigate("/home");
-    }, 2500);
-  }, []);
+  }, [location.pathname]);
   return (
     <Container>
       <White
