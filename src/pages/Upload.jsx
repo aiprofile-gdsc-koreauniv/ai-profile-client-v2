@@ -102,8 +102,18 @@ function Upload() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      if (res) navigate("/complete");
-      else if (res.status === 403) {
+      if (res.status === 200 || res.status === 201) {
+        navigate("/complete");
+      } else if (res.status === 400) {
+        toast.error("이미지 갯수를 확인해주세요.", {
+          style: {
+            wordBreak: "keep-all",
+            color: "#000",
+          },
+          id: 2,
+        });
+        setBeforeUpload(true);
+      } else if (res.status === 403) {
         toast.error("한 계정당 3회까지 이용할 수 있어요.", {
           style: {
             wordBreak: "keep-all",
