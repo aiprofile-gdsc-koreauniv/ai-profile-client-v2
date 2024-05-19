@@ -23,7 +23,7 @@ function Splash() {
 
     const navigateToHome = async () => {
       if (await isClosed()) {
-        navigate("/wip");
+        return;
       } else {
         setTimeout(() => {
           // navigate("/home");
