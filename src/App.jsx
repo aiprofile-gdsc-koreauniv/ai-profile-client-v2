@@ -32,18 +32,18 @@ function App() {
             {location.pathname !== "/wip" && (
               <Route path="/" element={<Splash />} />
             )}
-            <Route path="/home" element={<Home />} />
+            {/* <Route path="/home" element={<Home />} />
             <Route path="/" element={<TopbarLayout />}>
               <Route path="/select" element={<Select />} />
               <Route path="/upload" element={<Upload />} />
               <Route path="/complete" element={<Complete />} />
-            </Route>
+            </Route> */}
             <Route path="/wip" element={<WIP />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route
               path="/personal-information-agreement"
               element={<PersonalInformationAgreement />}
-            />
+            /> */}
           </Routes>
         </RecoilRoot>
       </Bg>

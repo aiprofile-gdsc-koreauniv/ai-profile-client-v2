@@ -26,7 +26,7 @@ function Splash() {
         return;
       } else {
         setTimeout(() => {
-          navigate("/home");
+          // navigate("/home");
         }, 3000);
       }
     };
