@@ -3,3 +3,9 @@
   to = "/"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/wip"
+  to = "/"
+  status = 301
+  force = true
