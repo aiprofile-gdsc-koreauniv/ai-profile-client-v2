@@ -9,41 +9,27 @@ import TopbarLayout from "./TopbarLayout";
 import Select from "./pages/Select";
 import PersonalInformationAgreement from "./pages/PersonalInformationAgreement";
 import WIP from "./pages/WIP";
-import { useEffect } from "react";
 import { RecoilRoot } from "recoil";
-import API from "./utils/axios";
+
 function App() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  useEffect(() => {
-    const fetchStatus = async () => {
-      const res = await API.get("/ops/service");
-      if (res.data.serviceState === "preparing") {
-        navigate("/wip");
-      }
-    };
-    fetchStatus();
-  }, []);
   return (
     <>
       <Bg>
         <RecoilRoot>
           <Routes>
-            {location.pathname !== "/wip" && (
-              <Route path="/" element={<Splash />} />
-            )}
-            {/* <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Splash />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/" element={<TopbarLayout />}>
               <Route path="/select" element={<Select />} />
               <Route path="/upload" element={<Upload />} />
               <Route path="/complete" element={<Complete />} />
-            </Route> */}
+            </Route>
             <Route path="/wip" element={<WIP />} />
-            {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route
               path="/personal-information-agreement"
               element={<PersonalInformationAgreement />}
-            /> */}
+            />
           </Routes>
         </RecoilRoot>
       </Bg>

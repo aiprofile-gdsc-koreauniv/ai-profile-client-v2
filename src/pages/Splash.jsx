@@ -6,6 +6,7 @@ import { easeInOut, motion } from "framer-motion";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { pageVariants } from "../animation/variants";
+import API from "../utils/axios";
 function Splash() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,10 +24,11 @@ function Splash() {
 
     const navigateToHome = async () => {
       if (await isClosed()) {
+        navigate("/wip");
         return;
       } else {
         setTimeout(() => {
-          // navigate("/home");
+          navigate("/home");
         }, 3000);
       }
     };
