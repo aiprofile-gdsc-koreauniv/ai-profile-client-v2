@@ -8,7 +8,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { pageVariants } from "../animation/variants";
 function Splash() {
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
+    if (location.pathname !== "/wip") {
+      return;
+    }
     setTimeout(() => {
       navigate("/home");
     }, 2500);

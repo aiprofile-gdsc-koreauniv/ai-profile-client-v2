@@ -14,6 +14,7 @@ import { RecoilRoot } from "recoil";
 import API from "./utils/axios";
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     const fetchStatus = async () => {
       const res = await API.get("/ops/service");
@@ -28,7 +29,9 @@ function App() {
       <Bg>
         <RecoilRoot>
           <Routes>
-            <Route path="/" element={<Splash />} />
+            {location.pathname !== "/wip" && (
+              <Route path="/" element={<Splash />} />
+            )}
             <Route path="/home" element={<Home />} />
             <Route path="/" element={<TopbarLayout />}>
               <Route path="/select" element={<Select />} />
