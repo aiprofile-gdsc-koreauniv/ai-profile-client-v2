@@ -43,60 +43,67 @@ function Complete() {
     fetchTime();
   }, []);
   return (
-    <Container>
-      <Title
-        initial={{ y: 12, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
-      >
-        사진 업로드 완료!
-      </Title>
-      <CompleteImg
-        src={complete}
-        initial={{ y: 24, opacity: 0, scale: 0.8333 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
-        transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
-      />
-      <Desc1
-        initial={{ y: 12, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
-      >
-        결과 페이지에서
-        <br /> 완성된 프로필을 확인하세요!
-      </Desc1>
+    time && (
+      <Container>
+        <Title
+          initial={{ y: 12, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
+        >
+          사진 업로드 완료!
+        </Title>
+        <CompleteImg
+          src={complete}
+          initial={{ y: 24, opacity: 0, scale: 0.8333 }}
+          animate={{ y: 0, opacity: 1, scale: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
+        />
+        <Desc1
+          initial={{ y: 12, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
+        >
+          결과 페이지에서
+          <br /> 완성된 프로필을 확인하세요!
+        </Desc1>
 
-      <RedBtn
-        initial={{ y: 24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
-        onClick={() => {
-          navigator.clipboard.writeText("horangstudio.com");
-          setCopied(true);
-        }}
-      >
-        친구에게 공유하기
-      </RedBtn>
-      <Btn
-        initial={{ y: 24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
-        onClick={() => {
-          navigate("/home");
-        }}
-      >
-        홈으로 돌아가기
-      </Btn>
-      {copied ? <Copy /> : <></>}
-      <TimeDiv>
-        예상 대기시간은
-        <TimeText> {time}</TimeText>분 입니다
-      </TimeDiv>
-    </Container>
+        <RedBtn
+          initial={{ y: 24, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
+          onClick={() => {
+            navigator.clipboard.writeText("horangstudio.com");
+            setCopied(true);
+          }}
+        >
+          친구에게 공유하기
+        </RedBtn>
+        <Btn
+          initial={{ y: 24, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
+          onClick={() => {
+            navigate("/home");
+          }}
+        >
+          홈으로 돌아가기
+        </Btn>
+        {copied ? <Copy /> : <></>}
+        <TimeDiv
+          initial={{ y: 12, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.6, ease: easeInOut }}
+        >
+          예상 대기시간은
+          <TimeText> {time}</TimeText>분 입니다
+        </TimeDiv>
+      </Container>
+    )
   );
 }
 
 export default Complete;
+
 const TimeDiv = styled(motion.div)`
   color: var(--black, #212121);
 
