@@ -509,7 +509,7 @@ const Notice = styled.p`
 const Continue = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 10px;
   gap: 16px;
 `;
 const ContinueBtn = styled.div`
